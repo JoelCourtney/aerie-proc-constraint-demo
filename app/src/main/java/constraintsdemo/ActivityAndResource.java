@@ -1,11 +1,15 @@
 package constraintsdemo;
 
+import gov.nasa.jpl.aerie.constraints.ActivityId;
 import gov.nasa.jpl.aerie.constraints.Constraint;
+import gov.nasa.jpl.aerie.constraints.Violation;
 import gov.nasa.jpl.aerie.constraints.Violations;
 import gov.nasa.jpl.aerie.timeline.CollectOptions;
 import gov.nasa.jpl.aerie.timeline.collections.profiles.Numbers;
 import gov.nasa.jpl.aerie.timeline.plan.Plan;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 /**
  * Compares an activity argument to a resource.
