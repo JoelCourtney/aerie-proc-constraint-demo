@@ -34,7 +34,7 @@ class ActivityAndResource implements Constraint {
          */
         final var quantities = pickActStarts.<Long, Numbers<Long>>flattenIntoProfile(
                 Numbers::new,
-                (act) -> act.getInner().getArguments().get("quantity").asInt().get()
+                (act) -> act.inner.arguments.get("quantity").asInt().get()
         );
         final var violations = Violations.violateOn(quantities.greaterThan(plant), true);
 
@@ -48,7 +48,7 @@ class ActivityAndResource implements Constraint {
          */
 //        final var quantities = pickActStarts.<Long, Numbers<Long>>flattenIntoProfile(
 //                Numbers::new,
-//                (act) -> act.getInner().getArguments().get("quantity").asInt().get()
+//                (act) -> act.inner.arguments.get("quantity").asInt().get()
 //        );
 //        final var violations = Violations.violations(
 //                pickActStarts.filterByWindows(quantities.greaterThan(plant).highlightTrue(), false)
@@ -67,11 +67,11 @@ class ActivityAndResource implements Constraint {
 //                Violations::new,
 //                plant,
 //                (act, plantSegment, intersection) -> {
-//                    final var quantityArg = act.getInner().getArguments().get("quantity").asInt().get();
-//                    if (quantityArg > plantSegment.getValue().longValue()) {
+//                    final var quantityArg = act.inner.arguments.get("quantity").asInt().get();
+//                    if (quantityArg > plantSegment.value.longValue()) {
 //                        return new Violation(
 //                                intersection,
-//                                List.of(new ActivityId.InstanceId(act.getId()))
+//                                List.of(new ActivityId.InstanceId(act.id))
 //                        );
 //                    } else {
 //                        return null;
