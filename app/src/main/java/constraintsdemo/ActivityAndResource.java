@@ -18,10 +18,7 @@ class ActivityAndResource implements Constraint {
     @NotNull
     @Override
     public Violations run(Plan plan, @NotNull CollectOptions options) {
-        final var pickActStarts = plan
-                .allActivityInstances()
-                .filterByType("PickBanana")
-                .starts();
+        final var pickActStarts = plan.directives("PickBanana").starts();
 
         final var plant = plan.resource("/plant", Numbers::deserialize);
 

@@ -12,13 +12,11 @@ import gov.nasa.jpl.aerie.timeline.plan.Plan
  */
 class ActivityOrdering: Constraint {
     override fun run(plan: Plan, options: CollectOptions): Violations {
-        val allActivities = plan.allActivityInstances()
-
-        val downloads = allActivities.filterByType("DownloadBanana")
+        val downloads = plan.instances("DownloadBanana")
 
         return downloads.connectTo(downloads, false).unsafeOperate(::Violations) {
             opts ->
-            val throws = allActivities.filterByType("ThrowBanana").collect(opts)
+            val throws = plan.instances("ThrowBanana").collect(opts)
             collect(opts).mapNotNull { connection ->
                 val satisfied = throws.any { t -> t.interval in connection.interval }
                 if (!satisfied) Violation(

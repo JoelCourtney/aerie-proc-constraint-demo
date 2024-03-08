@@ -13,10 +13,8 @@ class ActivityMutex implements Constraint {
     @NotNull
     @Override
     public Violations run(Plan plan, @NotNull CollectOptions options) {
-        final var allInstances = plan.allActivityInstances();
-
-        final var growActs = allInstances.filterByType("GrowBanana");
-        final var bakeActs = allInstances.filterByType("BakeBananaBread");
+        final var growActs = plan.instances("GrowBanana");
+        final var bakeActs = plan.instances("BakeBananaBread");
 
         return Violations.mutex(growActs, bakeActs);
     }
